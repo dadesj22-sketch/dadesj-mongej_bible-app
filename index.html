@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daily Bible Verses</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Figtree:wght@400;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="checking">
+  <div class="desk">
+    <header class="top">
+      <h1 data-i18n="title">Daily Bible Verses</h1>
+      <div class="controls">
+        <select id="lang" data-i18n-aria="language" aria-label="Language">
+          <option value="en">English</option>
+          <option value="tl">Tagalog</option>
+          <option value="war">Waray-Waray</option>
+        </select>
+        <select id="translation" data-i18n-aria="version" aria-label="Bible version">
+          <optgroup label="English">
+            <option value="web">World English Bible</option>
+            <option value="webbe">World English Bible (British)</option>
+            <option value="kjv">King James Version</option>
+            <option value="asv">American Standard Version</option>
+            <option value="bbe">Bible in Basic English</option>
+            <option value="darby">Darby Bible</option>
+            <option value="dra">Douay-Rheims 1899</option>
+            <option value="ylt">Young's Literal (NT only)</option>
+            <option value="oeb-us">Open English Bible (US)</option>
+            <option value="oeb-cw">Open English Bible (Commonwealth)</option>
+          </optgroup>
+          <optgroup label="Tagalog">
+            <option value="tagalog">Tagalog – Ang Dating Biblia (1905)</option>
+          </optgroup>
+          <optgroup label="Waray-Waray">
+            <option value="waray">Waray-Waray Bible</option>
+          </optgroup>
+          <optgroup label="Other">
+            <option value="almeida">Português – João Ferreira de Almeida</option>
+            <option value="clementine">Latina – Clementine Vulgate</option>
+            <option value="rccv">Română – Cornilescu</option>
+            <option value="bkr">Čeština – Bible kralická</option>
+            <option value="cuv">中文 – Chinese Union Version</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="user">
+        <span id="user-name"></span>
+        <button id="logout-btn" class="ghost" type="button" data-i18n="logout">Log out</button>
+      </div>
+    </header>
+
+    <main class="book">
+      <div class="cover" aria-hidden="true">
+        <div class="cover-frame">
+          <span class="cross">✝</span>
+          <p class="cover-title" data-i18n="title">Bible Reader</p>
+        </div>
+      </div>
+
+      <div class="spread">
+        <section class="page page-left">
+          <form id="search-form" class="search">
+            <input id="ref" type="text" placeholder="John 3:16 or Psalm 23" data-i18n-aria="searchLabel" aria-label="Verse or chapter" autocomplete="off" required>
+            <button type="submit" data-i18n="read">Read</button>
+          </form>
+          <form id="picker-form" class="picker">
+            <select id="book-select" data-i18n-aria="book" aria-label="Book"></select>
+            <input id="chapter-input" type="number" min="1" max="150" value="1" data-i18n-aria="chapter" aria-label="Chapter">
+            <button type="submit" data-i18n="read">Read</button>
+          </form>
+          <p id="version-hint" class="label" hidden></p>
+          <p id="message" class="message" role="status"></p>
+
+          <section id="votd" class="votd" aria-live="polite">
+            <p class="label" data-i18n="votd">Verse of the day</p>
+            <blockquote id="votd-text"></blockquote>
+            <p id="votd-ref" class="ref"></p>
+          </section>
+
+          <section class="bookmarks">
+            <h2 data-i18n="bookmarks">Bookmarks</h2>
+            <ul id="bookmark-list"></ul>
+            <p id="bookmark-empty" class="empty"></p>
+          </section>
+        </section>
+
+        <section class="page page-right">
+          <p id="open-prompt" class="open-prompt" data-i18n="openPrompt"></p>
+          <section id="reader" class="reader" hidden>
+            <div class="reader-head">
+              <h2 id="reader-title"></h2>
+              <button id="bookmark-btn" class="ghost" type="button">Bookmark</button>
+            </div>
+            <div id="verses"></div>
+            <nav class="chapter-nav">
+              <button id="prev" class="ghost" type="button" data-i18n="prev">Previous chapter</button>
+              <button id="copy" class="ghost" type="button" data-i18n="copy">Copy text</button>
+              <button id="next" class="ghost" type="button" data-i18n="next">Next chapter</button>
+            </nav>
+          </section>
+        </section>
+
+        <div id="leaf" class="leaf" aria-hidden="true"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="i18n.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

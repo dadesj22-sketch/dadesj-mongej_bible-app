@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bible Reader</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Figtree:wght@400;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="login-wrap">
+    <div class="login-card">
+      <div class="lang-row">
+        <select id="lang" data-i18n-aria="language" aria-label="Language">
+          <option value="en">English</option>
+          <option value="tl">Tagalog</option>
+          <option value="war">Waray-Waray</option>
+        </select>
+      </div>
+      <span class="cross">✝</span>
+      <h1 data-i18n="title">Bible Reader</h1>
+      <p class="label" data-i18n="loginSubtitle">Log in to open your dashboard</p>
+
+      <form id="auth-form" class="stack">
+        <input id="email" type="email" placeholder="Email address" data-i18n-placeholder="email" data-i18n-aria="email" aria-label="Email address" autocomplete="email" required>
+        <input id="password" type="password" placeholder="Password (8+ characters)" data-i18n-placeholder="password" data-i18n-aria="password" aria-label="Password" autocomplete="current-password" minlength="8" required>
+        <button type="submit" data-i18n="login">Log in</button>
+        <button id="register-btn" class="ghost" type="button" data-i18n="createAccount">Create account</button>
+      </form>
+
+      <p id="message" class="message" role="status"></p>
+
+      <p class="contact">
+        <span id="contact-text">Having trouble logging in or creating an account? If anything goes wrong or stops you, please contact the developer:</span>
+        <a href="mailto:dadesj22@gmail.com">dadesj22@gmail.com</a>
+        <a href="mailto:jimboymonge27@gmail.com">jimboymonge27@gmail.com</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="i18n.js"></script>
+  <script src="login.js"></script>
+  <script>
+    // The contact sentence lives here, so it always shows even if i18n.js is an older copy
+    const CONTACT = {
+      en: "Having trouble logging in or creating an account? If anything goes wrong or stops you, please contact the developer:",
+      tl: "Nahihirapan sa pag-log in o paggawa ng account? Kung may problema o naantala ka, makipag-ugnayan sa developer:",
+      war: "Nahihirapan ha pag-log in o paghimo hin account? Kon may problema o naantala ka, kontaka an developer:",
+    };
+    function showContact() {
+      document.getElementById("contact-text").textContent = CONTACT[lang] || CONTACT.en;
+    }
+    showContact();
+    document.addEventListener("langchange", showContact);
+  </script>
+</body>
+</html>
